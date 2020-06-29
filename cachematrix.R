@@ -1,15 +1,39 @@
-## Put comments here that give an overall description of what your
-## functions do
+# Proyecto 2
+makeCacheMatrix <- function( m = matrix() ) {
+  i <- NULL
+  
+  set <- function( matrix ) {
+    m <<- matrix
+    i <<- NULL
+  } # Set(matriz) me devuelve una variable m y i 
+  
+  get <- function() {
+    m
+  } # Get() muestra m
 
-## Write a short comment describing this function
+  setInverse <- function(inverse) {
+    i <<- inverse
+  } # setinverse(inverse) le da a i el valor inverse
+  
+  getInverse <- function() {
+    i
+  } # getinverse()Muestra I
 
-makeCacheMatrix <- function(x = matrix()) {
-
+  list(set = set, get = get,
+       setInverse = setInverse,
+       getInverse = getInverse)
 }
 
 
-## Write a short comment describing this function
+
+
+
+
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  m <- x$getInverse()
+  data <- x$get()
+  m <- solve(data) %*% data
+  x$setInverse(m)
+  m
 }
